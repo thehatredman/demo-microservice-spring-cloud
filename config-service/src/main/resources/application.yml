@@ -1,0 +1,40 @@
+#server:
+#  port: 8888
+
+spring:
+#  profiles:
+#    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations:
+            - file:///D:/project/java_project/microservice-spring-cloud/config-repo
+#          search-locations: classpath:/config/{application}
+#          search-locations: file:/config
+
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'DEBUG'
+    org.springframework.cloud.config.server: DEBUG
+
+##eureka:
+##  instance:
+##    leaseRenewalIntervalInSeconds: 10
+##    statusPageUrlPath: /admin/info
+##    healthCheckUrlPath: /admin/health
+#
+##spring:
+#
+#
+#
+##            cau hinh nay dang loi
+##            - file:./config/{application}
+##            cach nay chay ok
+##            - file:///D:/project/java_project/config
+##            cach nay chay ok nhe
+##            - classpath:/config/{application}
+##            - classpath:/config
+##"--spring.cloud.config.server.native.search-locations=file:/app/config"
+#

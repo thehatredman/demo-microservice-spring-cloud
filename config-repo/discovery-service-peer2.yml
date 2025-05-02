@@ -1,0 +1,16 @@
+server:
+  port: 8762
+eureka:
+  instance:
+    # Khi báo về registry, Eureka sẽ gửi kèm những URL này
+    homepageUrl: http://localhost:${server.port}/
+    statusPageUrl: http://localhost:${server.port}/
+    healthCheckUrl: http://localhost:${server.port}/actuator/health
+    hostname: eureka-peer2
+    # Đặt ID duy nhất cho từng node
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    # Optional: gửi IP thay vì hostname
+    prefer-ip-address: false
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8763/eureka/,http://localhost:8761/eureka/

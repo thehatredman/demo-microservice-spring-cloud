@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  config-service:
+    build:
+      context: ./config-service
+    ports:
+      - "8888:8888"
+    volumes:
+      - /home/os_lalaland/config:/app/config
+
+  discovery-service:
+    build:
+      context: ./discovery-service
+    depends_on:
+      - config-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    ports:
+      - "8082:8082"
+    volumes:
+      - /home/os_lalaland/config:/app/config
+
+#  auth-service:
+#    build:
+#      context: ./auth-service
+#    depends_on:
+#      - config-service
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=dev
+#    ports:
+#      - "8081:8081"

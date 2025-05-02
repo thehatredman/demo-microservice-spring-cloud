@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  config-service:
+    build: ./config-service
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./config-repo:/config
+    networks:
+      - backend
+
+  discovery-service-peer1:
+    build: ./discovery-service
+    ports:
+      - "8761:8761"
+    networks:
+      - backend
+
+  discovery-service-peer2:
+    build: ./discovery-service
+    ports:
+      - "8762:8762"
+    networks:
+      - backend
+
+  discovery-service-peer3:
+    build: ./discovery-service
+    ports:
+      - "8763:8763"
+    networks:
+      - backend
+
+  gateway-service:
+    build: ./gateway-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - config-service
+      - discovery-service
+    networks:
+      - backend
+
+  authen-service:
+    build: ./authen-service
+    ports:
+      - "8086:8086"
+    depends_on:
+      - config-service
+      - discovery-service
+    networks:
+      - backend
+
+networks:
+  backend:

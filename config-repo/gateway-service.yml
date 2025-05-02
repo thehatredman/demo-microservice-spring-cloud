@@ -1,0 +1,11 @@
+server:
+  port: 8084
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: authen-service
+          uri: lb://authen-service
+          predicates:
+            - Path=/auth/**
