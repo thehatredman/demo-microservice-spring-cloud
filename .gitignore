@@ -9,7 +9,7 @@
 .gradle
 build
 bin
-/target/
+target/
 git.properties
 .idea
 *.iml
