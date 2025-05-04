@@ -13,17 +13,17 @@
 ```
 ##priority level config
 ```html
-Spring Boot ưu tiên theo thứ tự sau:
+Spring Boot value properties priority:
 
-Tham số dòng lệnh (--server.port=8086)
+argument command line (--server.port=8086)
 
-Biến môi trường (SERVER_PORT=8086)
+Environment (SERVER_PORT=8086)
 
 application.yml / application.properties
 
-Mặc định của framework
+default of framework
 
-👉 Nghĩa là: nếu bạn truyền qua --server.port=8086, nó ghi đè tất cả các config khác.
+👉 Mean: if you send value by argument command line --server.port=8086, then value is override all other config.
 ```
 ### config env intelliJ or spring boot application
 ```yaml
@@ -187,7 +187,13 @@ docker run -d \
 http://127.0.0.2:8081/actuator/refresh
 ```
 
-#Nguồn tham khảo
+###config additional location
+```shell script
+docker run -v $(pwd)/external.properties:/app/config/external.properties -w /app myapp:latest \
+  java -jar app.jar --spring.config.additional-location=file:./config/external.properties
+
+```
+#Reference source
 ```html
 <li>
     spring.io
